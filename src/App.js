@@ -5,6 +5,7 @@ import Todo from './Components/Todo'
 import uuid from 'uuid';
 import $ from 'jquery';
 
+
 class App extends Component {
   constructor() {
     super();
@@ -81,7 +82,7 @@ class App extends Component {
       <div className="App">
        My app
        <AddProject addProject={this.handleAddProject.bind(this)}/>
-       <Projects onDeleteProject={this.handleDeleteProject.bind(this)} projects={this.state.projects}/>
+       <Projects onDeleteProject={this.handleDeleteProject.bind(this)}/>
        <Todo todoItems={this.state.todos} />
       </div>
     );

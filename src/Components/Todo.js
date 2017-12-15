@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import TodoItem from './TodoItem';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux'
+
 
 class Todo extends Component {
   deleteProject(id) {
@@ -9,8 +12,8 @@ class Todo extends Component {
 
   render() {
     let todoItems;
-    if(this.props.todoItems) {
-      todoItems = this.props.todoItems.map(t => {
+    if(this.props.todos) {
+      todoItems = this.props.todos.map(t => {
         return (
           <TodoItem key={t.title} todoItem={t} />
         );
@@ -26,8 +29,16 @@ class Todo extends Component {
   }
 }
 
+//mapping from state to prop
+function mapStateToProps(state) {
+  return {
+    todos: state.items
+  }
+}
+
 Todo.propTypes = {
   todos: PropTypes.array
 }
 
-export default Todo;
+//connecting the mapping to the component to be exported together
+export default connect(mapStateToProps)(Todo);
